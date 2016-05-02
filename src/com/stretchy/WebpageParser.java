@@ -56,6 +56,7 @@ public class WebpageParser {
         }
         String token = at.toString().replaceAll("<p>", " ");
         token = token.replaceAll("</p>", ".");
+        token = token.replaceAll("</h1>", ".");
         token = token.replaceAll("\\</article>.*","");
         token = token.replaceAll("\\<aside*\\</aside","");
         //token = token.replaceAll("\\<div*\\</div","");

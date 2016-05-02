@@ -50,9 +50,11 @@ public class ArticleImportantSentences {
         }
         average /= rankedSentences.size();
         int threshhold = top - average/2;
+        topSentences.add(rankedSentences.get(0));
+        System.out.println(rankedSentences.get(0) + ".");
         for (RankedSentence s : rankedSentences)
         {
-            if(s.getRank() > threshhold) {
+            if(s.getRank() > threshhold && !topSentences.contains(s)) {
                 topSentences.add(s);
                 System.out.println(s + ".");
             }

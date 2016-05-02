@@ -3,9 +3,15 @@ package com.stretchy;
 public class Main {
 
     public static void main(String[] args) {
-        WebpageParser parser = new WebpageParser("http://arstechnica.com/business/2016/05/craig-wright-says-loud-and-proud-i-am-satoshi-nakamoto/");
-        ArticleMostFrequentWord mostFrequentWord = new ArticleMostFrequentWord(parser.getArticleText());
-        ArticleImportantSentences important = new ArticleImportantSentences(parser.getArticleText(), mostFrequentWord.getTopWords());
-
+        if(args.length == 2)
+        {
+            WebpageParser parser = new WebpageParser(args[1]);
+            ArticleMostFrequentWord mostFrequentWord = new ArticleMostFrequentWord(parser.getArticleText());
+            ArticleImportantSentences important = new ArticleImportantSentences(parser.getArticleText(), mostFrequentWord.getTopWords());
+        }
+        else
+        {
+            System.out.println("Please enter a website URL.");
+        }
     }
 }

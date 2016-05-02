@@ -6,7 +6,7 @@ The Article De-lengthener will scan an article at the given URL and tally up the
 
 ##Installation and Usage
 Eventually there will be a .jar of the complete project somewhere in the out/artifacts/ directory.  Simply download this archive, navigate to the download directory and do: 
-//java -jar ./ArticleScannerBot [Put URL Here]
+`java -jar ./ArticleScannerBot [Put URL Here]`
 
 ##TODO
 <ul>

@@ -9,12 +9,14 @@ import java.util.function.Predicate;
  */
 public class ArticleImportantSentences {
     private String articleText;
+    private float threshhold;
     private LinkedList<RankedWord> topWords;
     private LinkedList<RankedSentence> topSentences;
-    public ArticleImportantSentences(String article, LinkedList<RankedWord> top)
+    public ArticleImportantSentences(String article, LinkedList<RankedWord> top, float t)
     {
         articleText = article;
         topWords = top;
+        threshhold = t;
         topSentences = new LinkedList<>();
         findImportantSentences();
     }
@@ -23,8 +25,9 @@ public class ArticleImportantSentences {
     {
         LinkedList<String> sentences = new LinkedList<>();
         LinkedList<RankedSentence> rankedSentences = new LinkedList<>();
-        sentences.addAll(Arrays.asList(articleText.split("[.]")));
+        sentences.addAll(Arrays.asList(articleText.split("\\. ")));
         sentences.removeIf(s -> s.equals(""));
+        sentences.removeIf(s -> s.matches("[^a-zA-Z]*"));
 
         for(String s : sentences)
         {
@@ -49,12 +52,12 @@ public class ArticleImportantSentences {
             average += current;
         }
         average /= rankedSentences.size();
-        int threshhold = top - average/2;
+        int lowerbounds = (int)((top - average/2) * threshhold);
         topSentences.add(rankedSentences.get(0));
         System.out.println(rankedSentences.get(0) + ".");
         for (RankedSentence s : rankedSentences)
         {
-            if(s.getRank() > threshhold && !topSentences.contains(s)) {
+            if(s.getRank() > lowerbounds && !topSentences.contains(s)) {
                 topSentences.add(s);
                 System.out.println(s + ".");
             }

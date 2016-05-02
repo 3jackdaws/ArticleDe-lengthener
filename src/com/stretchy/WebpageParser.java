@@ -54,6 +54,8 @@ public class WebpageParser {
                 // nothing to see here
             }
         }
+
+        //this might just be the worst possible way to do this
         String token = at.toString().replaceAll("<p>", " ");
         token = token.replaceAll("</p>", ".");
         token = token.replaceAll("</h1>", ".");
